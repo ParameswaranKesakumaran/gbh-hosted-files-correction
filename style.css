@@ -74,6 +74,9 @@ nav {
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
+
+
+
 /* Logo */
 #logoimg a {
   font-weight: 900;
@@ -85,9 +88,11 @@ nav {
 /* Navigation menu */
 nav ul {
   display: flex;
-  gap: 3rem;
+  gap: 2rem;
   list-style: none;
   align-items: center;
+  justify-content: center; /* Center align nav items */
+  flex-wrap: wrap;
   transition: max-height 0.5s ease, opacity 0.5s ease;
 }
 
@@ -99,25 +104,70 @@ nav li a {
 }
 
 nav li a:hover {
-  color: #0846c2;
+  color: #000000;
   transform: scale(1.06);
 }
 
-/* Vendor button */
+/* Common button style for Shop Now & Vendor Demo */
+.shop-btn,
 .vendor-btn {
   background: #1d3c26;
   color: #fff;
   padding: 0.6rem 1.6rem;
   border-radius: 25px;
   font-weight: bold;
+  text-decoration: none;
   border: none;
   transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
+  min-width: 140px; /* Ensures both buttons are same width */
 }
 
+.shop-btn:hover,
 .vendor-btn:hover {
-  background: #004f2a;
+  background: #ffffff;
+  color: #1d3c26;
   transform: scale(1.06);
 }
+
+/* Login button SVG */
+.login-btn svg {
+  vertical-align: middle;
+  fill: #1d3c26;
+}
+
+/* Responsive: Mobile menu */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  .nav-links li {
+    margin: 0.5rem 0;
+    text-align: center;
+  }
+
+  .nav-links.active {
+    max-height: 500px; /* Enough to show buttons */
+    transition: max-height 0.5s ease;
+  }
+
+  .desktop-buttons {
+    display: none; /* hide desktop buttons on mobile */
+  }
+}
+
+
+
+
+
+
+
+
 
 /* Login button */
 .login-btn svg {
