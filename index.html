@@ -34,7 +34,9 @@
 
         <!-- Mobile Buttons -->
         <li class="mobile-buttons">
-            <a class="shop-btn" href="https://www.farm2flat.com/" target="_blank">Shop Now</a>
+           <a class="shop-btn" href="#" onclick="openSignup()">Shop Now</a>
+
+
             <a class="vendor-btn" href="https://calendar.app.google/XHTG4JFheYZA5wYN9" target="_blank">Vendor Demo</a>
             <a class="login-btn" href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
@@ -151,8 +153,7 @@ essentials.</p>
             <li>Track orders, deliveries, and savings in one place</li>
             <li>Enjoy exclusive member offers and seasonal deals</li><br><br>
           </ul>
-          <button onclick="window.open('https://www.farm2flat.com/', '_blank')">
-Shop Now</button>
+          <a class="shop-btn" href="#" onclick="openSignup()">Shop Now</a>
         </div>
       </div>
     </div>
@@ -555,6 +556,63 @@ neque eget"</p>
 
 
 
+
+
+<!-- Signup Popup -->
+<!-- Modern Signup Popup -->
+<div id="signupPopup" class="popup-overlay">
+    <div class="popup-box">
+
+        <span class="close-btn" onclick="closeSignup()">&times;</span>
+
+        <h2 class="popup-title">Join GroupBuyHive</h2>
+        <p class="popup-sub">Signup to continue your shopping</p>
+
+        <form id="signupForm" class="form-area">
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="email" id="email" placeholder="Email Address" required>
+            <input type="text" id="phone" placeholder="Phone Number" required>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+
+        <!-- Success Box -->
+        <div id="successBox" class="success-box hidden">
+            <div class="checkmark">✔</div>
+            <h3>Signup Successful!</h3>
+            <p>You will be contacted by our team shortly.</p>
+        </div>
+
+    </div>
+</div>
+
+
+
 <script src="script.js"></script>
 </body>
+<script>
+function openSignup() {
+    document.getElementById("signupPopup").style.display = "flex";
+}
+
+function closeSignup() {
+    document.getElementById("signupPopup").style.display = "none";
+}
+
+document.getElementById("signupForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    // Hide form and show success screen
+    document.querySelector(".form-area").classList.add("hidden");
+    document.getElementById("successBox").classList.remove("hidden");
+
+    // Redirect to new page (NEW TAB)
+    setTimeout(() => {
+        window.open("https://www.farm2flat.com/", "_blank");
+    }, 2500);
+});
+</script>
+
+
+
 </html>

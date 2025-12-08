@@ -111,24 +111,23 @@ nav li a:hover {
 /* Common button style for Shop Now & Vendor Demo */
 .shop-btn,
 .vendor-btn {
-  background: #1d3c26;
+  background-color: #10563f;
   color: #fff;
-  padding: 0.6rem 1.6rem;
-  border-radius: 25px;
-  font-weight: bold;
-  text-decoration: none;
   border: none;
-  transition: all 0.3s ease;
-  display: inline-block;
-  text-align: center;
-  min-width: 140px; /* Ensures both buttons are same width */
+  border-radius: 20px;
+  padding: 10px 25px;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: center;
+  
+   transition: all 0.3s ease;/* Ensures both buttons are same width */
 }
 
 .shop-btn:hover,
 .vendor-btn:hover {
-  background: #ffffff;
-  color: #1d3c26;
+  background: #01ab59;
   transform: scale(1.06);
+  color: #ffffff;
 }
 
 /* Login button SVG */
@@ -160,6 +159,188 @@ nav li a:hover {
     display: none; /* hide desktop buttons on mobile */
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Popup Overlay */
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.55);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(3px);
+    z-index: 9999;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Popup Box */
+.popup-box {
+    width: 92%;
+    max-width: 420px;
+    background: rgba(255, 255, 255, 0.589);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(25px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    position: relative;
+    animation: slideUp 0.35s ease;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Title */
+.popup-title {
+    margin: 0;
+    font-size: 24px;
+    color: #1d3c26;
+    font-weight: 900;
+    text-align: center;
+}
+
+.popup-sub {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #000000;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #1d3c26;
+    transition: 0.2s;
+}
+.close-btn:hover {
+    color: #000;
+}
+
+/* Form Inputs */
+.form-area input {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 2px solid #cdd9ce;
+    background: rgba(255,255,255,0.7);
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.form-area input:focus {
+    border-color: #1d3c26;
+    background: white;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+    background: #1d3c26;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background: #244d32;
+    transform: scale(1.03);
+}
+
+/* Success Box */
+.success-box {
+    text-align: center;
+    animation: fadeIn 0.4s ease;
+}
+
+.success-box h3 {
+    color: #1d3c26;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.success-box p {
+   color: #1d3c26;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Stylish Checkmark */
+.checkmark {
+    width: 60px;
+    height: 60px;
+    background: #02ff4a;
+    color: white;
+    font-size: 32px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 10px;
+    animation: pop 0.3s ease;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; } 
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(40px); opacity: 0; } 
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pop {
+    0% { transform: scale(0.5); }
+    100% { transform: scale(1); }
+}
+
+.hidden { display: none; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -596,7 +777,7 @@ nav li a:hover {
 
 .card button:hover {
  
-   background: #004f2a;
+   background: #01ab59;
   transform: scale(1.06);
 }
 
