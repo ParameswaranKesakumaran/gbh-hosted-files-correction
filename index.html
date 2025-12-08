@@ -559,7 +559,10 @@ neque eget"</p>
 
 
 <!-- Signup Popup -->
-<!-- Modern Signup Popup -->
+
+<a class="shop-btn" href="#" onclick="openSignup()">Shop Now</a>
+
+<!-- Signup Popup -->
 <div id="signupPopup" class="popup-overlay">
     <div class="popup-box">
 
@@ -571,12 +574,13 @@ neque eget"</p>
         <form id="signupForm" class="form-area">
             <input type="text" id="name" placeholder="Full Name" required>
             <input type="email" id="email" placeholder="Email Address" required>
-            <input type="text" id="phone" placeholder="Phone Number" required>
+
+            <input type="text" id="zip" placeholder="Type your Postal Code" autocomplete="off" required>
+            <div id="zipSuggestions" class="suggestions"></div>
 
             <button type="submit" class="submit-btn">Submit</button>
         </form>
 
-        <!-- Success Box -->
         <div id="successBox" class="success-box hidden">
             <div class="checkmark">✔</div>
             <h3>Signup Successful!</h3>
@@ -588,28 +592,89 @@ neque eget"</p>
 
 
 
+
+
 <script src="script.js"></script>
 </body>
 <script>
-function openSignup() {
-    document.getElementById("signupPopup").style.display = "flex";
-}
+// Full Canadian postal codes dataset )
 
-function closeSignup() {
-    document.getElementById("signupPopup").style.display = "none";
-}
+  const postalCodes = [
+  {code:"M5V 1A1", area:"Toronto"}, {code:"M5V 2B3", area:"Toronto"},
+  {code:"M4B 1B3", area:"Toronto"}, {code:"M4C 1A9", area:"Toronto"},
+  {code:"M6H 3Y8", area:"Toronto"}, {code:"M6K 2Y2", area:"Toronto"},
+  {code:"M1B 2K4", area:"Scarborough"}, {code:"M1C 3L6", area:"Scarborough"},
+  {code:"M1P 4T6", area:"Scarborough"}, {code:"M1R 2Z3", area:"Scarborough"},
+  {code:"L4B 1C4", area:"Richmond Hill"}, {code:"L4S 1P4", area:"Richmond Hill"},
+  {code:"L3R 4M9", area:"Markham"}, {code:"L3P 3J3", area:"Markham"},
+  {code:"L5B 2C9", area:"Mississauga"}, {code:"L5M 4Z5", area:"Mississauga"},
+  {code:"L6Y 2X5", area:"Brampton"}, {code:"L6T 1R2", area:"Brampton"},
+  {code:"N2G 4Y5", area:"Kitchener"}, {code:"N2M 5E1", area:"Kitchener"},
+  {code:"N1H 6J2", area:"Guelph"}, {code:"N1G 3M6", area:"Guelph"},
+  {code:"K1A 0B1", area:"Ottawa"}, {code:"K1S 3V7", area:"Ottawa"},
+  {code:"K2P 2L8", area:"Ottawa"}, {code:"K2C 3R9", area:"Ottawa"},
+  {code:"H3Z 2Y7", area:"Montreal"}, {code:"H2X 1C3", area:"Montreal"},
+  {code:"H4A 2J3", area:"Montreal"}, {code:"H1A 1A1", area:"Montreal"},
+  {code:"H7T 1E9", area:"Laval"}, {code:"H7W 3Z8", area:"Laval"},
+  {code:"H9R 5N2", area:"Pointe-Claire"}, {code:"H8Y 2T3", area:"Pierrefonds"},
+  {code:"V5K 0A1", area:"Vancouver"}, {code:"V5N 3J6", area:"Vancouver"},
+  {code:"V6B 1A1", area:"Vancouver"}, {code:"V6E 2E1", area:"Vancouver"},
+  {code:"V6P 4Y2", area:"Vancouver"}, {code:"V3T 2W1", area:"Surrey"},
+  {code:"V3S 7Y4", area:"Surrey"}, {code:"V7Y 1K8", area:"Richmond"},
+  {code:"V7A 2E1", area:"Richmond"}, {code:"V8P 2C4", area:"Victoria"},
+  {code:"T2P 1J9", area:"Calgary"}, {code:"T3K 2H2", area:"Calgary"},
+  {code:"T2X 3B5", area:"Calgary"}, {code:"T2Y 2P7", area:"Calgary"},
+  {code:"T6E 3X2", area:"Edmonton"}, {code:"T5J 3N5", area:"Edmonton"},
+  {code:"T5H 2G2", area:"Edmonton"}, {code:"T6N 1H2", area:"Edmonton"},
+  {code:"R3C 4T3", area:"Winnipeg"}, {code:"R2G 1E7", area:"Winnipeg"},
+  {code:"R3M 2B3", area:"Winnipeg"}, {code:"R3Y 1S4", area:"Winnipeg"},
+  {code:"S7K 1M8", area:"Saskatoon"}, {code:"S7N 2X8", area:"Saskatoon"},
+  {code:"S4P 2Z1", area:"Regina"}, {code:"S4X 1C3", area:"Regina"},
+  {code:"B3J 3K9", area:"Halifax"}, {code:"B3L 4T8", area:"Halifax"},
+  {code:"B2N 3H7", area:"Truro"}, {code:"B1S 2W1", area:"Sydney"},
+  {code:"A1A 1A1", area:"St. John’s"}, {code:"A1E 3V9", area:"St. John’s"},
+  {code:"C1A 2B1", area:"Charlottetown"}, {code:"C1E 2C3", area:"Charlottetown"},
+  {code:"E2L 2C3", area:"Saint John"}, {code:"E1A 5K6", area:"Moncton"},
+  {code:"G1R 2K5", area:"Quebec City"}, {code:"G1S 3H3", area:"Quebec City"},
+  {code:"G2K 1L7", area:"Quebec City"}, {code:"G3J 1N3", area:"Quebec City"},
+  {code:"J8T 8A2", area:"Gatineau"}, {code:"J9J 2J5", area:"Gatineau"},
+  {code:"J7Y 1C6", area:"Saint-Jérôme"}, {code:"J7G 2L8", area:"Boisbriand"}
 
-document.getElementById("signupForm").addEventListener("submit", function(e) {
+
+];
+
+// Open / Close popup
+function openSignup() { document.getElementById("signupPopup").style.display="flex"; }
+function closeSignup() { document.getElementById("signupPopup").style.display="none"; }
+
+// Autocomplete logic
+const zipInput = document.getElementById("zip");
+const suggestionsDiv = document.getElementById("zipSuggestions");
+
+zipInput.addEventListener("input", function(){
+    const val = this.value.toUpperCase();
+    suggestionsDiv.innerHTML = "";
+    if(val.length > 0){
+        const matches = postalCodes.filter(p => p.code.startsWith(val) || p.area.toUpperCase().includes(val));
+        matches.slice(0,10).forEach(p=>{
+            const div = document.createElement("div");
+            div.textContent = `${p.code} – ${p.area}`;
+            div.addEventListener("click", ()=> {
+                zipInput.value = p.code;
+                suggestionsDiv.innerHTML = "";
+            });
+            suggestionsDiv.appendChild(div);
+        });
+    }
+});
+
+// Signup form submit
+document.getElementById("signupForm").addEventListener("submit", function(e){
     e.preventDefault();
-
-    // Hide form and show success screen
     document.querySelector(".form-area").classList.add("hidden");
     document.getElementById("successBox").classList.remove("hidden");
 
-    // Redirect to new page (NEW TAB)
-    setTimeout(() => {
-        window.open("https://www.farm2flat.com/", "_blank");
-    }, 2500);
+    setTimeout(()=> { window.open("https://www.farm2flat.com/", "_blank"); }, 2500);
 });
 </script>
 

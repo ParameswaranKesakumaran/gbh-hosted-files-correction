@@ -326,6 +326,67 @@ nav li a:hover {
 
 .hidden { display: none; }
 
+#zip {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 2px solid #cdd9ce;
+    background: rgba(255,255,255,0.7);
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+}
+
+#zip:focus {
+    border-color: #1d3c26;
+    background: white;
+}
+
+
+
+.suggestions { 
+  position: relative;
+   text-align:left; }
+
+
+.suggestions div 
+{ background:rgba(255, 255, 255, 0.467);
+  padding:8px 10px; 
+  cursor:pointer; 
+  border-bottom:1px solid #ddd;
+  border-radius: 3px;
+  font-size: 12px;
+ }
+
+.suggestions div:hover
+ { background:#a2e892; 
+    color:#000;
+    font-weight: bold;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
