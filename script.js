@@ -62,3 +62,58 @@ toggle.addEventListener('click', () => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const userIcon = document.getElementById("userIcon");
+  const modal = document.getElementById("waitlistModal");
+  const closeBtn = document.querySelector(".gbh-close");
+  const joinBtn = document.getElementById("joinWaitlistBtn");
+
+  userIcon.addEventListener("click", function (e) {
+    e.preventDefault();
+    modal.style.display = "block";
+  });
+
+  closeBtn.onclick = () => modal.style.display = "none";
+
+  window.onclick = (e) => {
+    if (e.target === modal) modal.style.display = "none";
+  };
+
+  joinBtn.onclick = () => {
+    const email = document.getElementById("waitlistEmail").value;
+
+    if (!email) {
+      alert("Please enter a valid email");
+      return;
+    }
+
+    // Temporary storage (replace later with backend)
+    let list = JSON.parse(localStorage.getItem("gbh_waitlist")) || [];
+    list.push(email);
+    localStorage.setItem("gbh_waitlist", JSON.stringify(list));
+
+    alert("You're on the waitlist 🎉");
+    modal.style.display = "none";
+  };
+
+

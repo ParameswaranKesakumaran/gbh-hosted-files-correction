@@ -390,6 +390,100 @@ nav li a:hover {
 
 
 
+.login-btn {
+  cursor: pointer;
+}
+
+/* Modal overlay */
+.gbh-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+}
+
+/* Modal box */
+.gbh-modal-content {
+  background: #fff;
+  max-width: 420px;
+  width: 90%;
+  margin: 12% auto;
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.gbh-modal-content h2 {
+  margin-bottom: 10px;
+}
+
+.gbh-modal-content p {
+  color: #555;
+  font-size: 14px;
+}
+
+.gbh-modal-content input {
+  width: 100%;
+  padding: 14px;
+  margin: 16px 0;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.gbh-modal-content button {
+  width: 100%;
+  padding: 14px;
+  background: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.gbh-close {
+  float: right;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
